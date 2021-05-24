@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="products">
+ 
+	<!-- 상품등록신청 -->
+	<insert id="proinsertdo" parameterType="product">
+	insert into product(pro_no,sel_id,pro_ceo,pro_name,pro_post,pro_addr,pro_n1,pro_n2,pro_x,pro_y,pro_con,pro_pic,pro_intro,pro_app,pro_joind,pro_s) 
+	values(product_seq1.nextval, #{sel_id}, #{pro_ceo}, #{pro_name}, #{pro_post}, #{pro_addr}, #{pro_n1}, #{pro_n2}, 0, 0, #{pro_con}, 
+	#{pro_pic}, #{pro_intro}, sysdate, null, 0)
+	</insert>
+ 
+</mapper>
