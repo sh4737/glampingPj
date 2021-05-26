@@ -18,10 +18,17 @@ public class ProductServiceImp implements ProductService{
 	@Autowired 
 	private ProductDAOImp proDao;
 
-	// 상품등록신청
+	// product 상품등록신청
 	@Override
-	public void proinsertdo(Product pro) throws Exception {
-		proDao.proinsertdo(pro);
+	public int proinsertdo(Product pro) throws Exception {
+		return proDao.proinsertdo(pro);
+	}
+	
+	// product 등록시점 pro_no 구하기
+	@Override
+	public Product proload(String sel_id) throws Exception {
+		
+		return proDao.proload(sel_id);
 	}
 	
 

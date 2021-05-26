@@ -8,7 +8,7 @@
 </head>
 <body>
 어서와 ${sel_id }
-<a href="proinsertform?sel_id=${para}">
+<a href="proinsertform?sel_id=${sel_id}">
 <input type="button" value="상품등록으로 이동">
 </a>
 

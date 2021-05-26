@@ -9,5 +9,10 @@
 	values(product_seq1.nextval, #{sel_id}, #{pro_ceo}, #{pro_name}, #{pro_post}, #{pro_addr}, #{pro_n1}, #{pro_n2}, 0, 0, #{pro_con}, 
 	#{pro_pic}, #{pro_intro}, sysdate, null, 0)
 	</insert>
- 
+ 	
+ 	<!-- 등록시점 pro_no 구하기 -->
+ 	<select id="proload" parameterType="String" resultType="product">
+ 	select * from product where pro_no = (select max(pro_no) from product where sel_id = #{sel_id})
+ 	</select>
+ 	
 </mapper>

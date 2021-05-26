@@ -18,14 +18,16 @@ public class ProductDAOImp implements ProductDAO{
 	@Autowired
 	private SqlSession sqlsession;
 	
-	// 상품등록신청
+	// product 상품등록신청
 	@Override
-	public void proinsertdo(Product pro) throws Exception {
-		System.out.println("ProductDAOImp까지도착");
-		System.out.println("파일이름 :" + pro.getPro_pic());
-		System.out.println("편의시설 :" + pro.getPro_con());
-		sqlsession.insert("products.proinsertdo", pro);
-		
+	public int proinsertdo(Product pro) throws Exception {
+		return sqlsession.insert("products.proinsertdo", pro);		
+	}
+	
+	// product 등록시점 pro_no 구하기
+	@Override
+	public Product proload(String sel_id) throws Exception {	
+		return (Product) sqlsession.selectOne("products.proload", sel_id);
 	}
 
 }

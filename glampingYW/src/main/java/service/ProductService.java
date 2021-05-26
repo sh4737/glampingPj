@@ -9,7 +9,7 @@ import model.Reservation;
 
 public interface ProductService {
 	
-	public void proinsertdo(Product pro) throws Exception;
+	public int proinsertdo(Product pro) throws Exception; 
 	
-	
+	public Product proload(String sel_id) throws Exception;
 }

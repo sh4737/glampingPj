@@ -30,7 +30,8 @@
 	<form method="post" action="<%=request.getContextPath() %>/proinsert" enctype="multipart/form-data">
 	<input type="hidden" name="sel_id" value="${sel_id }">
 	<table class="yw_table">
-	<div>
+	<br>
+	<tbody>
 	<h2>${sel_id }님의 상품등록 페이지</h2>
 
 		<tr>
@@ -80,20 +81,16 @@
 	
 	    <tr>
      		<td>업체 대표사진</td>
-     		<td><input type="file" id="pro_pic" name="pro_pic1" /></td>
+     		<td><input type="file" id="pro_pic1" name="pro_pic1" /></td>
    		</tr>
    		
-   		<tr>
-     		<td>업체사진</td>
-     		<td>
-     			<input type="file" id="pp_name1" name="pp_name" />
-     			<input type="file" id="pp_name2" name="pp_name" />
-     			<input type="file" id="pp_name3" name="pp_name" />
-     			<input type="file" id="pp_name4" name="pp_name" />
-     			<input type="file" id="pp_name5" name="pp_name" />
-     			<input type="file" id="pp_name6" name="pp_name" />
-     		</td>
-   		</tr>
+		<tr>
+			<td>업체사진</td>
+			<td><input type="button" value="사진추가" id="add_pp_name"/></td>
+		</tr>
+
+        <tr id="tr_pp_name"></tr>
+
    		
 	    <tr>
      		<td>소개글:</td>
@@ -104,12 +101,13 @@
  			<td colspan="2"><hr></td>
  		</tr>
  		
-		</div>
+		</tbody>
 		
 		
-		<div>
+		<tbody>
 		<tr>
-   			<td><h4>1번타입 룸</h4></td>
+   			<td><h4>객실정보</h4></td>
+   			<td><input type="hidden" name="rm_type" value="3"></td>
  		</tr>
  		
 		<tr>
@@ -133,172 +131,41 @@
 		</tr>
 		
 	    <tr>
-     		<td>객실프로필사진</td>
-     		<td><input type="file" id="rm_pic" name="rm_pic" /></td>
+     		<td>객실대표사진</td>
+     		<td><input type="file" id="rm_pic1" name="rm_pic1" /></td>
    		</tr>
    		
    		<tr>
-     		<td>객실사진</td>
-     		<td>
-     			<input type="file" id="rp_name1" name="rp_name" />
-     			<input type="file" id="rp_name2" name="rp_name" />
-     			<input type="file" id="rp_name3" name="rp_name" />
-     			<input type="file" id="rp_name4" name="rp_name" />		
-     		</td>
-   		</tr>
+			<td>객실사진</td>
+			<td><input type="button" value="사진추가" id="add_rp_name"/></td>
+		</tr>
+   		
+   		<tr id="tr_rp_name"></tr>
+
+		 <tr>
+ 			<td colspan="2" align=center><input type="button" value="객실항목추가" id="add_room"/></td>
+ 		</tr>
    		
  		<tr>
  			<td colspan="2"><hr></td>
  		</tr>
-		</div>
+ 		
+ 		</tbody>
+ 		
+ 		<tbody id="tbody_add_room"></tbody>
+
+		
 		
 
 		
-		<div>
-		<tr>
-   			<td><h4>2번타입 룸</h4></td>
- 		</tr>
- 
-		<tr>
-			<td>객실명:</td>
-			<td><input id="rm_tname" name="rm_tname" size="50"></td>
-		</tr>
 		
-		<tr>
-			<td>인원수(객실당):</td>
-			<td><input id="rm_pno" name="rm_pno" size="2">명</td>
-		</tr>
-		
-   		<tr>
-			<td>객실수:</td>
-			<td><input id="rm_rno" name="rm_rno" size="2">개</td>
-		</tr>
-		
-   		<tr>
-			<td>가격(1박):</td>
-			<td><input id="rm_price" name="rm_price" size="10">원</td>
-		</tr>
-		
-	    <tr>
-     		<td>객실프로필사진</td>
-     		<td><input type="file" id="rm_pic" name="rm_pic" /></td>
-   		</tr>
-   		
-   		<tr>
-     		<td>객실사진</td>
-     		<td>
-     			<input type="file" id="rp_name1" name="rp_name" />
-     			<input type="file" id="rp_name2" name="rp_name" />
-     			<input type="file" id="rp_name3" name="rp_name" />
-     			<input type="file" id="rp_name4" name="rp_name" />		
-     		</td>
-   		</tr>	
-   		
- 		<tr>
- 			<td colspan="2"><hr></td>
- 		</tr>
- 		
-		</div>
-		
-		<div>
-		<tr>
-   			<td><h4>3번타입 룸</h4></td>
- 		</tr>
- 
-		<tr>
-			<td>객실명:</td>
-			<td><input id="rm_tname" name="rm_tname" size="50"></td>
-		</tr>
-		
-		<tr>
-			<td>인원수(객실당):</td>
-			<td><input id="rm_pno" name="rm_pno" size="2">명</td>
-		</tr>
-		
-   		<tr>
-			<td>객실수:</td>
-			<td><input id="rm_rno" name="rm_rno" size="2">개</td>
-		</tr>
-		
-   		<tr>
-			<td>가격(1박):</td>
-			<td><input id="rm_price" name="rm_price" size="10">원</td>
-		</tr>
-		
-	    <tr>
-     		<td>객실프로필사진</td>
-     		<td><input type="file" id="rm_pic" name="rm_pic" /></td>
-   		</tr>
-   		
-   		<tr>
-     		<td>객실사진</td>
-     		<td>
-     			<input type="file" id="rp_name1" name="rp_name" />
-     			<input type="file" id="rp_name2" name="rp_name" />
-     			<input type="file" id="rp_name3" name="rp_name" />
-     			<input type="file" id="rp_name4" name="rp_name" />		
-     		</td>
-   		</tr>	
-   		
- 		<tr>
- 			<td colspan="2"><hr></td>
- 		</tr>
- 		
-		</div>
-		
-		<div>
-		<tr>
-   			<td><h4>4번타입 룸</h4></td>
- 		</tr>
- 
-		<tr>
-			<td>객실명:</td>
-			<td><input id="rm_tname" name="rm_tname" size="50"></td>
-		</tr>
-		
-		<tr>
-			<td>인원수(객실당):</td>
-			<td><input id="rm_pno" name="rm_pno" size="2">명</td>
-		</tr>
-		
-   		<tr>
-			<td>객실수:</td>
-			<td><input id="rm_rno" name="rm_rno" size="2">개</td>
-		</tr>
-		
-   		<tr>
-			<td>가격(1박):</td>
-			<td><input id="rm_price" name="rm_price" size="10">원</td>
-		</tr>
-		
-	    <tr>
-     		<td>객실프로필사진</td>
-     		<td><input type="file" id="rm_pic" name="rm_pic" /></td>
-   		</tr>
-   		
-   		<tr>
-     		<td>객실사진</td>
-     		<td>
-     			<input type="file" id="rp_name1" name="rp_name" />
-     			<input type="file" id="rp_name2" name="rp_name" />
-     			<input type="file" id="rp_name3" name="rp_name" />
-     			<input type="file" id="rp_name4" name="rp_name" />		
-     		</td>
-   		</tr>	
-   		
- 		<tr>
- 			<td colspan="2"><hr></td>
- 		</tr>
- 		
-		</div>
-		
-		<div>
+		<tbody>
 		<tr>
 			<td colspan=2 align=center>
 				<input type=submit value="상품등록신청"><input type=reset value="취소">
 			</td>	
 		</tr>
-		</div>
+		</tbody>
 			
 		</table>	
 		
