@@ -14,7 +14,7 @@
 		<c:forEach var="rm" items="${rmlist}">
 			<div class="row">
 				<div class="col-md-4">
-					<img src="" height="100" width="100">
+					<img src="${pageContext.request.contextPath }/upload/${rm.rm_pic}" height="100" width="100">
 				</div>
 				<div class="col-md-7">
 					<h6>${rm.rm_tname}</h6>
