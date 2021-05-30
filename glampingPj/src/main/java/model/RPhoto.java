@@ -3,7 +3,7 @@ package model;
 public class RPhoto {
 	private int rp_no;
 	private int rm_no;
-	private int rp_name;
+	private String rp_name;
 	
 	public int getRp_no() {
 		return rp_no;
@@ -17,10 +17,10 @@ public class RPhoto {
 	public void setRm_no(int rm_no) {
 		this.rm_no = rm_no;
 	}
-	public int getRp_name() {
+	public String getRp_name() {
 		return rp_name;
 	}
-	public void setRp_name(int rp_name) {
+	public void setRp_name(String rp_name) {
 		this.rp_name = rp_name;
 	}
 	

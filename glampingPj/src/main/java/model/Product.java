@@ -20,6 +20,20 @@ public class Product {
 	private Timestamp pro_joind;
 	private int pro_s;
 	
+	//join용
+	private Room roomR;
+	
+	//page
+	private int startRow;
+	private int endRow;
+	
+	//검색
+	private String region;
+	private String keyword;
+	private Timestamp checkIn;
+	private Timestamp checkOut;
+	private int cap;
+	
 	public int getPro_no() {
 		return pro_no;
 	}
@@ -116,7 +130,54 @@ public class Product {
 	public void setPro_s(int pro_s) {
 		this.pro_s = pro_s;
 	}
-	
+	public String getRegion() {
+		return region;
+	}
+	public void setRegion(String region) {
+		this.region = region;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	public Timestamp getCheckIn() {
+		return checkIn;
+	}
+	public void setCheckIn(Timestamp checkIn) {
+		this.checkIn = checkIn;
+	}
+	public Timestamp getCheckOut() {
+		return checkOut;
+	}
+	public void setCheckOut(Timestamp checkOut) {
+		this.checkOut = checkOut;
+	}
+	public int getCap() {
+		return cap;
+	}
+	public void setCap(int cap) {
+		this.cap = cap;
+	}
+	public int getStartRow() {
+		return startRow;
+	}
+	public void setStartRow(int startRow) {
+		this.startRow = startRow;
+	}
+	public int getEndRow() {
+		return endRow;
+	}
+	public void setEndRow(int endRow) {
+		this.endRow = endRow;
+	}
+	public Room getRoomR() {
+		return roomR;
+	}
+	public void setRoomR(Room roomR) {
+		this.roomR = roomR;
+	}
 	
 	
 }

@@ -9,6 +9,7 @@ public class Room {
 	private int rm_rno;
 	private int rm_price;
 	private int rm_s;
+	private String rm_pic;
 	
 	public int getRm_no() {
 		return rm_no;
@@ -58,6 +59,11 @@ public class Room {
 	public void setRm_s(int rm_s) {
 		this.rm_s = rm_s;
 	}
-	
+	public String getRm_pic() {
+		return rm_pic;
+	}
+	public void setRm_pic(String rm_pic) {
+		this.rm_pic = rm_pic;
+	}
 	
 }
