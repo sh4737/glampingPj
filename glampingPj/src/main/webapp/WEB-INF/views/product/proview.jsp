@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath }/css/product/proview.css">
@@ -11,12 +12,19 @@
 
 <!-- header 파일 불러오기 -->
 <%@ include file="../header.jsp"%>
+
+<!-- jquery ui css -->
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+
 <script type="text/javascript">
+	// 후기 및 객실정보 불러오기
 	$(function() {
 		$('#review').load('${pageContext.request.contextPath}/relist/pro_no/${product.pro_no}')
 		$('#roomlist').load('${pageContext.request.contextPath}/rmlist/pro_no/${product.pro_no}')
-	});
+	});	
 </script>
+<script src="${pageContext.request.contextPath }/js/product/proview.js"></script>
 
 <section class="col-8 container-fluid">
 	<div class="container">
@@ -25,7 +33,7 @@
 			<p>${product.pro_addr}</p>
 		</div>
 		<div class="row">
-			<div id="info" class="col-sm-8 col-md-9">
+			<div id="info" class="col-sm-8 col-md-9" style="float:left">
 				<div id="cont_sec">
 					<div>
 						<div id="carouselExampleIndicators" class="carousel slide"
@@ -35,23 +43,22 @@
 									data-bs-target="#carouselExampleIndicators"
 									data-bs-slide-to="0" class="active" aria-current="true"
 									aria-label="Slide 1"></button>
-								<button type="button"
-									data-bs-target="#carouselExampleIndicators"
-									data-bs-slide-to="1" aria-label="Slide 2"></button>
-								<button type="button"
-									data-bs-target="#carouselExampleIndicators"
-									data-bs-slide-to="2" aria-label="Slide 3"></button>
+								<c:set var="size" value="${fn:length(pplist)}"/>
+								<c:forEach var="i" begin="1" end="${size}">
+									<button type="button"
+										data-bs-target="#carouselExampleIndicators"
+										data-bs-slide-to="${i}" aria-label="Slide ${i+1}"></button>
+								</c:forEach>	
 							</div>
 							<div class="carousel-inner">
 								<div class="carousel-item active">
-									<img src="..." class="d-block w-25" alt="...">
+									<img src="${product.pro_pic }" class="d-block w-25" alt="...">
 								</div>
-								<div class="carousel-item">
-									<img src="..." class="d-block w-25" alt="...">
-								</div>
-								<div class="carousel-item">
-									<img src="..." class="d-block w-25" alt="...">
-								</div>
+								<c:forEach var="pp" items="${pplist}">
+									<div class="carousel-item">
+										<img src="${pp.pp_name}" class="d-block w-25" alt="...">
+									</div>
+								</c:forEach>
 							</div>
 							<button class="carousel-control-prev" type="button"
 								data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
@@ -87,6 +94,7 @@
 					</div>
 					<div>
 						<h5>위치</h5>
+						<p>주소 : ${product.pro_addr}</p>
 						<div id="map" style="width: 500px; height: 400px;"></div>
 						<script>
 							var container = document.getElementById('map');
@@ -96,6 +104,16 @@
 							};
 					
 							var map = new kakao.maps.Map(container, options);
+							
+							var markerPosition  = new kakao.maps.LatLng(${product.pro_x}, ${product.pro_y}); 
+
+							// 마커 생성
+							var marker = new kakao.maps.Marker({
+							    position: markerPosition
+							});
+
+							// 마커 지도 위에 표시
+							marker.setMap(map);
 						</script>
 					</div>
 					<div>
@@ -108,7 +126,7 @@
 				</div>
 			</div>
 
-			<div id="reserv" class="col-sm-4 col-md-3">
+			<div id="reserv" class="col-sm-4 col-md-3" style="float:right">
 				<div id="rev_sec">
 					<h5>예약 가격 정보</h5>
 					<form>
@@ -149,7 +167,11 @@
 								</td>
 							</tr>
 						</table>
-						<div>가격 정보 표시 부분</div>
+						<div id="rm_price">
+							<span id="sel_name"></span><br>
+							<span id="sel_count"></span><span id="sel_price"></span>							
+						</div>
+						<input type="hidden" id="tname" name="res_tname">
 						<input type="submit" id="rev_button" value="예약하기">
 					</form>
 				</div>

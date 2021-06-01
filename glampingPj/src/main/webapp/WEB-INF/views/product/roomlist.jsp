@@ -17,12 +17,12 @@
 					<img src="${pageContext.request.contextPath }/upload/${rm.rm_pic}" height="100" width="100">
 				</div>
 				<div class="col-md-7">
-					<h6>${rm.rm_tname}</h6>
+					<h6 id="set_name_${rm.rm_type}">${rm.rm_tname}</h6>
 					<span>인원 수 : 최대 ${rm.rm_pno}명</span>
-					<span>가격 : ${rm.rm_price}원</span>
+					<span>가격 : 1박 <span id="set_price_${rm.rm_type}">${rm.rm_price}</span>원</span>
 				</div>
 				<div class="col-md-1">
-					<input type="radio" name="rm_select" id="${rm.rm_type}">
+					<input type="radio" name="rm_select" value="${rm.rm_type}" onclick='getRmInfo(event)'>
 				</div>
 			</div>
 		</c:forEach>

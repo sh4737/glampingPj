@@ -8,14 +8,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
+import model.PPhoto;
 import model.Product;
+import service.pphoto.PPhotoService;
 import service.product.ProductService;
 
 @Controller
 public class ProductController {
 	@Autowired
 	private ProductService pros;
+	@Autowired
+	private PPhotoService pps;
 	
 	//메인 페이지
 	@RequestMapping("/main")
@@ -38,7 +43,7 @@ public class ProductController {
 	}
 	
 	//검색 페이지
-	@RequestMapping("/prolist/pageNum/{pageNum}")
+	@RequestMapping(value ="/prolist/pageNum/{pageNum}", method = { RequestMethod.GET, RequestMethod.POST })
 	public String list(@PathVariable String pageNum, String checkInS, String checkOutS, String capS, String regionS, Product product, Model model) {
 		// 페이징
 		final int rowPerPage = 20;
@@ -128,8 +133,6 @@ public class ProductController {
 		
 		int capNum = Integer.parseInt(capS);
 		product.setCap(capNum);
-		
-		System.out.println("cap : " + product.getCap());
 			
 		// 체크인, 체크아웃 형변환 (String to Timestamp)
 		if(checkInS == "" && checkOutS == "") {
@@ -153,15 +156,16 @@ public class ProductController {
 		List<Product> list = pros.list(product); 
 		model.addAttribute("list", list);
 		
-		model.addAttribute("pageNum", pageNum+1);
-		
 		return "/product/fetchprolist";
 	}
 	
-	// 상품 상세 페이지(날짜 미선택)
+	// 상품 상세 페이지(날짜, 인원 미선택)
 	@RequestMapping("/proView/pro_no/{pro_no}")
 	public String initProView(@PathVariable int pro_no, Model model) {
 		Product product = pros.proview(pro_no);
+		
+		//해당 상품 사진 구해오기
+		List<PPhoto> pplist = pps.list(pro_no);
 		
 		//상세 정보 줄바꿈
 		String intro = product.getPro_intro().replace("\n", "<br>");
@@ -170,6 +174,7 @@ public class ProductController {
 		String c = product.getPro_con();
 		String[] con = c.split("-");
 		
+		model.addAttribute("pplist", pplist);
 		model.addAttribute("product", product);
 		model.addAttribute("intro", intro);
 		model.addAttribute("con", con);
@@ -182,13 +187,18 @@ public class ProductController {
 	public String proView(@PathVariable int pro_no, @PathVariable String checkInS, @PathVariable String checkOutS, Model model) {
 		Product product = pros.proview(pro_no);
 		
+		//해당 상품 사진 구해오기
+		List<PPhoto> pplist = pps.list(pro_no);
+		
 		//상세 정보 줄바꿈
 		String intro = product.getPro_intro().replace("\n", "<br>");
 		
 		//편의 시설 배열 변환
-				String c = product.getPro_con();
-				String[] con = c.split("-");
+		String c = product.getPro_con();
+		String[] con = c.split("-");
 		
+		
+		model.addAttribute("pplist", pplist);
 		model.addAttribute("product", product);
 		model.addAttribute("intro", intro);
 		model.addAttribute("con", con);

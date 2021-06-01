@@ -17,8 +17,14 @@
 					<img src="${pageContext.request.contextPath }/upload/${product.pro_pic}" height="180" width="180">
 				</div>
 				<div class="col-10 col-sm-11 protext">
-					<h4><a href="${pageContext.request.contextPath }/view/pro_no/${product.pro_no}/checkInS/${checkInS}/checkOutS/${checkOutS}">${product.pro_name }</a></h4><br>
-					<p><a href="${pageContext.request.contextPath }/view/pro_no/${product.pro_no}/checkInS/${checkInS}/checkOutS/${checkOutS}">${product.pro_addr }</a></p>
+					<c:if test="${checkInS != null and checkOutS != null}">
+						<h4><a href="${pageContext.request.contextPath }/proView/pro_no/${product.pro_no}/checkInS/${checkInS}/checkOutS/${checkOutS}">${product.pro_name }</a></h4><br>
+						<p><a href="${pageContext.request.contextPath }/proView/pro_no/${product.pro_no}/checkInS/${checkInS}/checkOutS/${checkOutS}">${product.pro_addr }</a></p>
+					</c:if>
+					<c:if test="${checkInS == null and checkOutS == null}">
+						<h4><a href="${pageContext.request.contextPath }/proView/pro_no/${product.pro_no}">${product.pro_name }</a></h4><br>
+						<p><a href="${pageContext.request.contextPath }/proView/pro_no/${product.pro_no}">${product.pro_addr }</a></p>
+					</c:if>
 				</div>
 			</div>
 		</div>

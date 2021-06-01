@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+
 <!-- header 파일 불러오기 -->
 <%@ include file="../header.jsp" %>
 
@@ -15,7 +16,7 @@
 
 <section class="col-8 container-fluid ">
 	<div>
-		<form action="${pageContext.request.contextPath }/prolist/pageNum/1">
+		<form action="${pageContext.request.contextPath }/prolist/pageNum/1" method="post">
 			지역
 			<select name="regionS" id="regionS">
 				<option value="all"
@@ -69,7 +70,6 @@
 			
 			<input type="text" name="keyword" id="keyword" value="${keyword}">
 			<input type="submit" value="검색">
-			<input type="reset" value="초기화">
 		</form>
 	</div>
 	<div>
@@ -110,8 +110,7 @@
 				</div>
 			</c:forEach>
 		</c:if>
-		<input type="text" id="no" hidden="true" value="${pageNum+1}">
-		<input type="text" id="pageCount" hidden="true" value="${pageCount}">
+		<input type="hidden" id="pageCount" value="${pageCount}">
 		<div id="fetchMore"></div>
 	</div>
 </section>

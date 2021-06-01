@@ -28,34 +28,37 @@
 					<c:if test="${regionS=='Jeju'}">selected="selected" </c:if>>제주</option>
 				<option value="Gangwon"
 					<c:if test="${regionS=='Gangwon'}">selected="selected" </c:if>>강원</option>
-			</select> 체크인<input type="text" id="checkIn" name="checkInS"
-				value="${checkInS}" readonly="readonly"> 체크아웃<input
-				type="text" id="checkOut" name="checkOutS" value="${checkOutS}"
-				readonly="readonly"> 인원 <select name="capS">
-				<option value="0"
-					<c:if test="${cap=='0'}">selected="selected" </c:if>>인원</option>
-				<option value="1"
-					<c:if test="${cap=='1'}">selected="selected" </c:if>>1</option>
-				<option value="2"
-					<c:if test="${cap=='2'}">selected="selected" </c:if>>2</option>
-				<option value="3"
-					<c:if test="${cap=='3'}">selected="selected" </c:if>>3</option>
-				<option value="4"
-					<c:if test="${cap=='4'}">selected="selected" </c:if>>4</option>
-				<option value="5"
-					<c:if test="${cap=='5'}">selected="selected" </c:if>>5</option>
-				<option value="6"
-					<c:if test="${cap=='6'}">selected="selected" </c:if>>6</option>
-				<option value="7"
-					<c:if test="${cap=='7'}">selected="selected" </c:if>>7</option>
-				<option value="8"
-					<c:if test="${cap=='8'}">selected="selected" </c:if>>8</option>
-				<option value="9"
-					<c:if test="${cap=='9'}">selected="selected" </c:if>>9</option>
-				<option value="10"
-					<c:if test="${cap=='10'}">selected="selected" </c:if>>10</option>
-			</select> <input type="text" name="keyword"> <input type="submit"
-				value="검색"> <input type="reset" value="초기화">
+			</select> 
+			
+			체크인<input type="text" id="checkIn" name="checkInS" value="${checkInS}" readonly="readonly">
+			체크아웃<input type="text" id="checkOut" name="checkOutS" value="${checkOutS}" readonly="readonly"> 
+			
+			인원 <select name="capS">
+					<option value="0"
+						<c:if test="${cap=='0'}">selected="selected" </c:if>>인원</option>
+					<option value="1"
+						<c:if test="${cap=='1'}">selected="selected" </c:if>>1</option>
+					<option value="2"
+						<c:if test="${cap=='2'}">selected="selected" </c:if>>2</option>
+					<option value="3"
+						<c:if test="${cap=='3'}">selected="selected" </c:if>>3</option>
+					<option value="4"
+						<c:if test="${cap=='4'}">selected="selected" </c:if>>4</option>
+					<option value="5"
+						<c:if test="${cap=='5'}">selected="selected" </c:if>>5</option>
+					<option value="6"
+						<c:if test="${cap=='6'}">selected="selected" </c:if>>6</option>
+					<option value="7"
+						<c:if test="${cap=='7'}">selected="selected" </c:if>>7</option>
+					<option value="8"
+						<c:if test="${cap=='8'}">selected="selected" </c:if>>8</option>
+					<option value="9"
+						<c:if test="${cap=='9'}">selected="selected" </c:if>>9</option>
+					<option value="10"
+						<c:if test="${cap=='10'}">selected="selected" </c:if>>10</option>
+				</select> 
+			<input type="text" name="keyword"> 
+			<input type="submit" value="검색">
 		</form>
 	</div>
 	<div id="carouselExampleCaptions" class="carousel slide"
@@ -64,7 +67,7 @@
 			<button type="button" data-bs-target="#carouselExampleCaptions"
 				data-bs-slide-to="0" class="active" aria-current="true"
 				aria-label="Slide 1"></button>
-			<c:set var="size" value="${fn:length(listBest)}"></c:set>
+			<c:set var="size" value="${fn:length(listBest)}"/>
 			<c:forEach var="i" begin="1" end="${size}">
 				<button type="button" data-bs-target="#carouselExampleCaptions"
 					data-bs-slide-to="${i}" aria-label="Slide ${i+1}"></button>

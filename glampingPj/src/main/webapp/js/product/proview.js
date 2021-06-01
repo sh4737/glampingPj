@@ -1,4 +1,3 @@
-
 /*datepicker*/
 $(function() {
 
@@ -37,51 +36,58 @@ $(function() {
 		}
 	});
 	
-});
-
-/*무한 스크롤*/
-$(function() {
+	//일수 계산
+	let start = $("#checkIn").datepicker('getDate');
+   	let end = $("#checkOut").datepicker('getDate');
+	let days = (end - start)/1000/60/60/24;
+	let count = days + "박";
 	
-	let page = 2;
-	let pCount = $("#pageCount").val();
+	if(days > 0){
+	    $("#sel_count").text(count);
+	} else {
+		$("#sel_count").text("1박");
+	}   
 	
-	let win = $(window);
- 
-    win.scroll(function() {
-        if ($(document).height() - win.height() == win.scrollTop()) {
-        	console.log(page);
-        	console.log(pCount);
-        	
-        	 $.ajax({
-                url: '/glamping/fetchprolist',
-                data: {"pageNum" : page,
-				"regionS" : $("#regionS").val(),
-				"checkInS" : $("#checkIn").val(),
-				"checkOutS" : $("#checkOut").val(),
-				"capS" : $("#capS").val(),
-				"keyword" : $("#keyword").val()},
-				method: "POST", 
-                dataType: 'html',
-                success: function(html) {
-                    $('#fetchMore').append(html);
-                }
-            });
-			page++;
-			sleep(200);
-			
-        }
-        
-    });
-    
-	if(pCount <= page){
-		return false;
-	}
+	$("#checkOut").change(function(){
+		start = $("#checkIn").datepicker('getDate');
+   		end = $("#checkOut").datepicker('getDate');
+		days = (end - start)/1000/60/60/24;
+		count = days + "박";
+		
+		if(days > 0) {
+			$("#sel_count").text(count);
+		}
+		
+	});
+	$("#checkIn").change(function(){
+		start = $("#checkIn").datepicker('getDate');
+   		end = $("#checkOut").datepicker('getDate');
+		days = (end - start)/1000/60/60/24;
+		count = days + "박";
+		
+		if(days > 0) {
+			$("#sel_count").text(count);
+		}
+		
+	});
 
-});
 
-/*지연*/
-function sleep(ms) {
-	const wakeUpTime = Date.now() + ms;
-	while (Date.now() < wakeUpTime) {}
+})
+
+// 가격 정보 출력
+function getRmInfo(event) {
+	
+	var i = event.target.value;
+	var setN = 'set_name_'+i;
+	var setP = 'set_price_'+i;
+		
+	document.getElementById('sel_name').innerText = 
+		document.getElementById(setN).innerText;
+	
+	document.getElementById('tname').value = 
+		document.getElementById(setN).innerText;
+	
+	document.getElementById('sel_price').innerText = 
+		(document.getElementById(setP).innerText) * (document.getElementById('sel_count').innerText).slice(0,-1);
+		
 }
-	

@@ -49,9 +49,7 @@
 						pro_addr like '%'||#{region}||'%'
 					</if>
 				</where>
-				<if test="cap > 0">
-					and <![CDATA[r.rm_rno > #{cap, jdbcType=INTEGER}]]>
-				</if>
+				and <![CDATA[rm_rno >= #{cap, jdbcType=INTEGER}]]>
 			</if>
 			<if test="cap == 0 and checkIn != null and checkOut != null">
 				select p.*, r.rm_no ,r.rm_rno, r.rm_pno from product p join room r on p.pro_no = r.pro_no 
@@ -87,8 +85,8 @@
 					</if>
 				</where>
 			</if>
-			order by pro_joind desc) a )
-			where rn between #{startRow, jdbcType=INTEGER} and #{endRow, jdbcType=INTEGER}
+			 order by pro_joind desc) a )
+			 where rn between #{startRow, jdbcType=INTEGER} and #{endRow, jdbcType=INTEGER}
 	</select>
 	
 	<!-- 2. 총 데이터 개수 -->
@@ -110,9 +108,7 @@
 						pro_addr like '%'||#{region}||'%'
 					</if>
 				</where>
-				<if test="cap > 0">
-					and <![CDATA[r.rm_rno > #{cap, jdbcType=INTEGER}]]>
-				</if>
+				and <![CDATA[rm_rno >= #{cap, jdbcType=INTEGER}]]>
 			</if>
 			<if test="cap == 0 and checkIn != null and checkOut != null">
 				select p.*, r.rm_no ,r.rm_rno, r.rm_pno from product p join room r on p.pro_no = r.pro_no 

@@ -51,8 +51,6 @@ public class ProductServiceImpl implements ProductService {
 			product.setRegion("강원");
 		}
 		
-		System.out.println("Region : " + product.getRegion());
-		
 		return pd.list(product);
 	}
 	
