@@ -28,8 +28,10 @@ public class ReviewController {
 		int retotal = res.getTotal(pro_no);
 
 		// 별점 평균 구하기
+		int star = 0;
+		double star_avg = 0;
+		
 		if(relist.size() != 0) {
-			int star = 0;
 			
 			for(int i = 0; i <relist.size(); i++) {
 				Review re = relist.get(i);
@@ -41,7 +43,7 @@ public class ReviewController {
 				star += re.getRev_star();
 			}
 			
-			double star_avg = Math.round((star/ relist.size()*10)/10.0);
+			star_avg = Math.round((star/ relist.size()*10)/10.0);
 			model.addAttribute("star_avg", star_avg);
 		}
 		

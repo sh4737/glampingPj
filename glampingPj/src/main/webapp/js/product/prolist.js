@@ -49,8 +49,6 @@ $(function() {
  
     win.scroll(function() {
         if ($(document).height() - win.height() == win.scrollTop()) {
-        	console.log(page);
-        	console.log(pCount);
         	
         	 $.ajax({
                 url: '/glamping/fetchprolist',
@@ -68,7 +66,6 @@ $(function() {
             });
 			page++;
 			sleep(200);
-			
         }
         
     });

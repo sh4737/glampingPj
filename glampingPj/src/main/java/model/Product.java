@@ -34,6 +34,11 @@ public class Product {
 	private Timestamp checkOut;
 	private int cap;
 	
+	// 별점, 최저가
+	private double star_avg;
+	private int rev_cnt;
+	private int rv_total;
+	
 	public int getPro_no() {
 		return pro_no;
 	}
@@ -177,6 +182,24 @@ public class Product {
 	}
 	public void setRoomR(Room roomR) {
 		this.roomR = roomR;
+	}
+	public double getStar_avg() {
+		return star_avg;
+	}
+	public void setStar_avg(double star_avg) {
+		this.star_avg = star_avg;
+	}
+	public int getRev_cnt() {
+		return rev_cnt;
+	}
+	public void setRev_cnt(int rev_cnt) {
+		this.rev_cnt = rev_cnt;
+	}
+	public int getRv_total() {
+		return rv_total;
+	}
+	public void setRv_total(int rv_total) {
+		this.rv_total = rv_total;
 	}
 	
 	

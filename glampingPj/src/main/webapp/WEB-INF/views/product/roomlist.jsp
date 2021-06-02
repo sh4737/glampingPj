@@ -8,13 +8,30 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<script type="text/javascript">
+	$(function() {
+		$(".m_ac").click(function(){
+			
+			var attrNm = $(this).attr("data-bs-target").split('_');
+			var divName = "#img_load_" + attrNm[1];
+			var url = $(this).data('url');
+			console.log(attrNm[1]);
+			console.log(divName);
+			console.log(url);
+			
+			$(divName).load(url);
+			
+		});
+	});	
+</script>
 </head>
 <body>
 	<div class="container">
 		<c:forEach var="rm" items="${rmlist}">
 			<div class="row">
 				<div class="col-md-4">
-					<img src="${pageContext.request.contextPath }/upload/${rm.rm_pic}" height="100" width="100">
+					<a href="#" class="m_ac" data-bs-toggle="modal" data-bs-target="#i_${rm.rm_no}" data-url="${pageContext.request.contextPath }/loadimglist/rm_no/${rm.rm_no}">
+						<img src="${pageContext.request.contextPath }/upload/${rm.rm_pic}" height="100" width="100"></a>
 				</div>
 				<div class="col-md-7">
 					<h6 id="set_name_${rm.rm_type}">${rm.rm_tname}</h6>
@@ -24,6 +41,24 @@
 				<div class="col-md-1">
 					<input type="radio" name="rm_select" value="${rm.rm_type}" onclick='getRmInfo(event)'>
 				</div>
+			</div>
+			
+			<!-- Modal -->
+			<div class="modal fade" id="i_${rm.rm_no}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			  <div class="modal-dialog modal-dialog-centered modal-lg" >
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="exampleModalLabel">${rm.rm_tname}</h5>
+			        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			      </div>
+			      <div class="modal-body">
+			        <div id="img_load_${rm.rm_no}"></div>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+			      </div>
+			    </div>
+			  </div>
 			</div>
 		</c:forEach>
 	</div>

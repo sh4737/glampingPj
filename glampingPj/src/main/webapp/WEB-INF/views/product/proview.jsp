@@ -18,7 +18,6 @@
 <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 
 <script type="text/javascript">
-	// 후기 및 객실정보 불러오기
 	$(function() {
 		$('#review').load('${pageContext.request.contextPath}/relist/pro_no/${product.pro_no}')
 		$('#roomlist').load('${pageContext.request.contextPath}/rmlist/pro_no/${product.pro_no}')

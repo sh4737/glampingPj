@@ -54,7 +54,14 @@ $(function() {
 		days = (end - start)/1000/60/60/24;
 		count = days + "박";
 		
+		var price = parseInt($("#sel_price").text());
+		var cText = parseInt($("#sel_count").text());
+		
 		if(days > 0) {
+			if( $("#sel_price").text() != "" &&  $("#sel_price").text() != null) {
+				$("#sel_price").text((price/cText)*days);
+			}
+			
 			$("#sel_count").text(count);
 		}
 		
@@ -65,12 +72,18 @@ $(function() {
 		days = (end - start)/1000/60/60/24;
 		count = days + "박";
 		
+		var price = parseInt($("#sel_price").text());
+		var cText = parseInt($("#sel_count").text());
+		
+		
 		if(days > 0) {
+			if( $("#sel_price").text() != "" &&  $("#sel_price").text() != null) {
+				$("#sel_price").text((price/cText)*days);
+			}
 			$("#sel_count").text(count);
 		}
 		
 	});
-
 
 })
 

@@ -12,8 +12,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import model.PPhoto;
 import model.Product;
+import model.Review;
+import model.Room;
 import service.pphoto.PPhotoService;
 import service.product.ProductService;
+import service.review.ReviewService;
+import service.room.RoomService;
 
 @Controller
 public class ProductController {
@@ -21,6 +25,10 @@ public class ProductController {
 	private ProductService pros;
 	@Autowired
 	private PPhotoService pps;
+	@Autowired
+	private ReviewService res;
+	@Autowired
+	private RoomService rms;
 	
 	//메인 페이지
 	@RequestMapping("/main")
@@ -28,9 +36,94 @@ public class ProductController {
 		
 		List<Product> listTop = pros.listTop(product);
 		
-		List<Product> listBest = pros.listBest(product);
+		// 별점 평균 및 최저가격 구하기
+		for(int k = 0; k <listTop.size(); k++) {
+			Product pro = listTop.get(k);
+			
+			// 별점 평균, 후기 개수
+			List<Review> relist = res.list(pro.getPro_no());
+			int retotal = res.getTotal(pro.getPro_no());
+
+			pro.setRv_total(retotal);
+			
+			int star = 0;
+			double star_avg = 0;
+			int min = 0;
+			
+			if(relist.size() != 0) {
+				
+				for(int i = 0; i <relist.size(); i++) {
+					Review re = relist.get(i);
+					
+					star += re.getRev_star();
+				}
+				
+				star_avg = Math.round((star/ relist.size()*10)/10.0);
+				pro.setStar_avg(star_avg);
+			}
+			
+			// 최저가
+			List<Room> rmlist = rms.list(pro.getPro_no());
+			
+			for(int j = 0; j <rmlist.size(); j++) {
+				Room rm = rmlist.get(j);
+				
+				if(j > 0) {
+					min	= Math.min(min, rm.getRm_price());
+				} else {
+					min = rm.getRm_price();
+				}
+			}
+			pro.setRev_cnt(min);
+			
+		}
 		
 		model.addAttribute("listTop", listTop);
+		
+		List<Product> listBest = pros.listBest(product);
+		
+		// 별점 평균 및 최저가격 구하기
+		for(int k = 0; k <listBest.size(); k++) {
+			Product pro = listBest.get(k);
+			
+			// 별점 평균, 후기 개수
+			List<Review> relist = res.list(pro.getPro_no());
+			int retotal = res.getTotal(pro.getPro_no());
+
+			pro.setRv_total(retotal);
+			
+			int star = 0;
+			double star_avg = 0;
+			int min = 0;
+			
+			if(relist.size() != 0) {
+				
+				for(int i = 0; i <relist.size(); i++) {
+					Review re = relist.get(i);
+					
+					star += re.getRev_star();
+				}
+				
+				star_avg = Math.round((star/ relist.size()*10)/10.0);
+				pro.setStar_avg(star_avg);
+			}
+			
+			// 최저가
+			List<Room> rmlist = rms.list(pro.getPro_no());
+			
+			for(int j = 0; j <rmlist.size(); j++) {
+				Room rm = rmlist.get(j);
+				
+				if(j > 0) {
+					min	= Math.min(min, rm.getRm_price());
+				} else {
+					min = rm.getRm_price();
+				}
+			}
+			pro.setRev_cnt(min);
+			
+		}
+		
 		model.addAttribute("listBest", listBest);
 		
 		return "/product/main";
@@ -56,8 +149,6 @@ public class ProductController {
 		product.setStartRow(startRow);
 		product.setEndRow(endRow);
 		
-		System.out.println("capS : "+ capS);
-		
 		// 지역 입력
 		product.setRegion(regionS);
 		
@@ -67,9 +158,7 @@ public class ProductController {
 		}
 		
 		int capNum = Integer.parseInt(capS);
-		product.setCap(capNum);
-		
-		System.out.println("cap : " + product.getCap());
+		product.setCap(capNum);		
 			
 		// 체크인, 체크아웃 형변환 (String to Timestamp)
 		if(checkInS == "" && checkOutS == "") {
@@ -95,8 +184,51 @@ public class ProductController {
 		model.addAttribute("pageCount", pageCount);
 		
 		List<Product> list = pros.list(product); 
-		model.addAttribute("list", list);
 		
+		// 별점 평균 및 최저가격 구하기
+		for(int k = 0; k <list.size(); k++) {
+			Product pro = list.get(k);
+			
+			// 별점 평균, 후기 개수
+			List<Review> relist = res.list(pro.getPro_no());
+			int retotal = res.getTotal(pro.getPro_no());
+
+			pro.setRv_total(retotal);
+			
+			int star = 0;
+			double star_avg = 0;
+			int min = 0;
+			
+			if(relist.size() != 0) {
+				
+				for(int i = 0; i <relist.size(); i++) {
+					Review re = relist.get(i);
+					
+					star += re.getRev_star();
+				}
+				
+				star_avg = Math.round((star/ relist.size()*10)/10.0);
+				pro.setStar_avg(star_avg);
+			}
+			
+			// 최저가
+			List<Room> rmlist = rms.list(pro.getPro_no());
+			
+			for(int j = 0; j <rmlist.size(); j++) {
+				Room rm = rmlist.get(j);
+				
+				if(j > 0) {
+					min	= Math.min(min, rm.getRm_price());
+				} else {
+					min = rm.getRm_price();
+				}
+			}
+			pro.setRev_cnt(min);
+			
+		}
+		
+		model.addAttribute("list", list);
+				
 		model.addAttribute("pageNum", pageNum);
 		//검색
 		model.addAttribute("regionS", regionS);
@@ -116,7 +248,7 @@ public class ProductController {
 		if (pageNum == null || pageNum.equals("")) {
 			pageNum = "2";
 		}
-		System.out.println("pageNum : " + pageNum);
+
 		int currentPage = Integer.parseInt(pageNum);
 		int startRow = (currentPage - 1) * rowPerPage + 1;
 		int endRow = startRow + rowPerPage - 1;
@@ -154,6 +286,48 @@ public class ProductController {
 		
 			
 		List<Product> list = pros.list(product); 
+		
+		// 별점 평균 및 최저가격 구하기
+		for(int k = 0; k <list.size(); k++) {
+			Product pro = list.get(k);
+			
+			// 별점 평균, 후기 개수
+			List<Review> relist = res.list(pro.getPro_no());
+			int retotal = res.getTotal(pro.getPro_no());
+			pro.setRv_total(retotal);
+			
+			int star = 0;
+			double star_avg = 0;
+			int min = 0;
+			
+			if(relist.size() != 0) {
+				
+				for(int i = 0; i <relist.size(); i++) {
+					Review re = relist.get(i);
+					
+					star += re.getRev_star();
+				}
+				
+				star_avg = Math.round((star/ relist.size()*10)/10.0);
+				pro.setStar_avg(star_avg);
+			}
+			
+			// 최저가
+			List<Room> rmlist = rms.list(pro.getPro_no());
+			
+			for(int j = 0; j <rmlist.size(); j++) {
+				Room rm = rmlist.get(j);
+				
+				if(j > 0) {
+					min	= Math.min(min, rm.getRm_price());
+				} else {
+					min = rm.getRm_price();
+				}
+			}
+			pro.setRev_cnt(min);
+			
+		}
+		
 		model.addAttribute("list", list);
 		
 		return "/product/fetchprolist";

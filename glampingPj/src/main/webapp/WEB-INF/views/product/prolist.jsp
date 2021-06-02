@@ -106,6 +106,17 @@
 								<p><a href="${pageContext.request.contextPath }/proView/pro_no/${product.pro_no}">${product.pro_addr }</a></p>
 							</c:if>
 						</div>
+						<div>
+							<c:if test="${product.rv_total != 0 }">
+								<span>별점: ${product.star_avg} </span><span>(후기 ${product.rv_total})</span>
+							</c:if>
+							<c:if test="${product.rv_total == 0 }">
+								아직 후기가 없습니다
+							</c:if>
+						</div>
+						<div>
+							<span>최저가 </span><span>${product.rev_cnt}</span> 
+						</div>
 					</div>
 				</div>
 			</c:forEach>
