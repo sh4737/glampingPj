@@ -54,37 +54,73 @@ $(function() {
 		days = (end - start)/1000/60/60/24;
 		count = days + "박";
 		
-		var price = parseInt($("#sel_price").text());
+		var price = $("#sel_price").text().slice(0,-1);
+		price = minusComma(price);
+		price = parseInt(price);
+		
 		var cText = parseInt($("#sel_count").text());
+		var setCm = (price/cText)*days;
+		
+		setCm = setCm + "";
+		setCm = addComma(setCm) + "원";
 		
 		if(days > 0) {
 			if( $("#sel_price").text() != "" &&  $("#sel_price").text() != null) {
-				$("#sel_price").text((price/cText)*days);
+				$("#sel_price").text(setCm);
 			}
 			
 			$("#sel_count").text(count);
 		}
 		
 	});
+	
 	$("#checkIn").change(function(){
 		start = $("#checkIn").datepicker('getDate');
    		end = $("#checkOut").datepicker('getDate');
 		days = (end - start)/1000/60/60/24;
 		count = days + "박";
 		
-		var price = parseInt($("#sel_price").text());
-		var cText = parseInt($("#sel_count").text());
+		var price = $("#sel_price").text().slice(0,-1);
+		price = minusComma(price);
+		price = parseInt(price);
 		
+		var cText = parseInt($("#sel_count").text());
+		var setCm = (price/cText)*days;
+		
+		setCm = setCm + "";
+		setCm = addComma(setCm) + "원";
 		
 		if(days > 0) {
 			if( $("#sel_price").text() != "" &&  $("#sel_price").text() != null) {
-				$("#sel_price").text((price/cText)*days);
+				$("#sel_price").text(setCm);
 			}
 			$("#sel_count").text(count);
 		}
 		
 	});
+	
+	// 예약 유효성 검사
+	$('form').submit(function(){
+		if($("#checkIn").val() == ""){
+			alert("체크인 날짜를 선택해주세요");
+			return false;
+		}
+		if($("#checkOut").val() == ""){
+			alert("체크아웃 날짜를 선택해주세요");
+			return false;
+		}
+		if($("#capS").val() == "0"){
+			alert("인원 수를 선택해주세요");
+			$("#capS").focus();
+			return false;
+		}
+		if($("input[name=rm_select]:radio:checked").length < 1){
+			alert("객실을 선택해주세요");
+			return false;
+		}
 
+	});
+	
 })
 
 // 가격 정보 출력
@@ -99,8 +135,22 @@ function getRmInfo(event) {
 	
 	document.getElementById('tname').value = 
 		document.getElementById(setN).innerText;
-	
-	document.getElementById('sel_price').innerText = 
-		(document.getElementById(setP).innerText) * (document.getElementById('sel_count').innerText).slice(0,-1);
 		
+	var price = (document.getElementById(setP).innerText) * (document.getElementById('sel_count').innerText).slice(0,-1);
+	
+	price = price + "";
+	price = addComma(price);
+	
+	document.getElementById('sel_price').innerText = price +"원";	
+}
+
+//천단위 콤마 펑션
+function addComma(value){
+	value = value.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+	return value; 
+}
+
+function minusComma(value){
+	value = value.replace(/[^\d]+/g, "");
+	return value; 
 }

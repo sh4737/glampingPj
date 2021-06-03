@@ -28,18 +28,25 @@
 <body>
 	<div class="container">
 		<c:forEach var="rm" items="${rmlist}">
-			<div class="row">
-				<div class="col-md-4">
+			<div class="rm_row row">
+				<div class="col-md-3">
 					<a href="#" class="m_ac" data-bs-toggle="modal" data-bs-target="#i_${rm.rm_no}" data-url="${pageContext.request.contextPath }/loadimglist/rm_no/${rm.rm_no}">
 						<img src="${pageContext.request.contextPath }/upload/${rm.rm_pic}" height="100" width="100"></a>
 				</div>
-				<div class="col-md-7">
-					<h6 id="set_name_${rm.rm_type}">${rm.rm_tname}</h6>
-					<span>인원 수 : 최대 ${rm.rm_pno}명</span>
-					<span>가격 : 1박 <span id="set_price_${rm.rm_type}">${rm.rm_price}</span>원</span>
+				<div class="col-md-8">
+					<h6 id="set_name_${rm.rm_type}" class="bold">${rm.rm_tname}</h6><br>
+					<div class="row">
+						<div class="col-6">
+							<span>인원 수 : </span><span class="bold">최대 ${rm.rm_pno}명</span>
+						</div>
+						<div class="col-6">
+							<span class="">가격 : 1박 </span><span class="bold"><fmt:formatNumber value="${rm.rm_price}" pattern="#,###"/>원</span>
+						</div>
+					</div>
+					<span id="set_price_${rm.rm_type}" hidden="hidden">${rm.rm_price}</span>
 				</div>
-				<div class="col-md-1">
-					<input type="radio" name="rm_select" value="${rm.rm_type}" onclick='getRmInfo(event)'>
+				<div class="col-md-1 align-self-center">
+					<input type="radio" class="form-check-input" name="rm_select" value="${rm.rm_type}" onclick='getRmInfo(event)'>
 				</div>
 			</div>
 			

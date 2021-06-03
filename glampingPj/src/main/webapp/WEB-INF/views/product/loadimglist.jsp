@@ -28,23 +28,13 @@
 			</c:forEach>	
 		</div>
 		<div class="carousel-inner">
-			<%-- <div class="carousel-item active">
-				<img src="${imglist[0].rp_name}" class="d-block w-25" alt="...">
-			</div>
-			<c:if test="${size > 1}">
-				<c:forEach var="img" begin="1" end="${size-1}">
-					<div class="carousel-item">
-						<img src="${imglist[img].rp_name}" class="d-block w-25" alt="...">
-					</div>
-				</c:forEach>
-			</c:if> --%>
 			<div class="carousel-item active">
 				<img src="${pageContext.request.contextPath }/upload/${rm.rm_pic}" class="d-block w-25" alt="...">
 			</div>
 			<c:if test="${size > 1}">
 				<c:forEach var="img" items="${imglist}">
 					<div class="carousel-item">
-						<img src="${img.rp_name}" class="d-block w-25" alt="...">
+						<img src="${pageContext.request.contextPath }/upload/${img.rp_name}" class="d-block w-25" alt="...">
 					</div>
 				</c:forEach>
 			</c:if>

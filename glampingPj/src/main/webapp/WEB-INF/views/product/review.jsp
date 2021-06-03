@@ -19,16 +19,16 @@
 	</c:if>
 	<c:if test="${not empty relist}">
 		<div class="container">
-			<div>
-				<p>${star_avg}/5<span>(후기 ${retotal}개)</span></p>
+			<div id="str_div">
+				<p>${star_avg}/5 <span>(후기 ${retotal}개)</span></p>
 			</div>
 			<div id="rev1">
-				<button type="button" id="showB" class="btn btn-outline-secondary">후기 전체 보기</button>
+				<button type="button" id="showB" class="btn btn-primary">후기 전체 보기</button>
 				<table>
 					<tr>
 						<td>
-							<p>${relist[0].mem_id}</p>
-							<p>${relist[0].rev_date}</p>
+							<p class="bold">${relist[0].mem_id}</p>
+							<p class="date_size">${relist[0].rev_date}</p>
 						</td>
 					</tr>
 					<tr>
@@ -37,13 +37,13 @@
 				</table>
 			</div>
 			<div id="rev_all">
-					<button type="button" id="hideB" class="btn btn-outline-secondary">후기 숨기기</button>
+					<button type="button" id="hideB" class="btn btn-primary">후기 숨기기</button>
 				<c:forEach var="re" items="${relist}">
 					<table>
 						<tr>
 							<td>
-								<p>${re.mem_id}</p>
-								<p>${re.rev_date}</p>
+								<p class="bold">${re.mem_id}</p>
+								<p class="date_size">${re.rev_date}</p>
 							</td>
 						</tr>
 						<tr>

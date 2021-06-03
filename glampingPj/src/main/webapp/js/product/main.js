@@ -1,4 +1,3 @@
-
 /*datepicker*/
 $(function() {
 
@@ -50,47 +49,3 @@ $(function() {
 	});
 	
 });
-
-/*무한 스크롤*/
-$(function() {
-	
-	let page = 2;
-	let pCount = $("#pageCount").val();
-	
-	let win = $(window);
- 
-    win.scroll(function() {
-        if ($(document).height() - win.height() == win.scrollTop()) {
-        	
-        	 $.ajax({
-                url: '/glamping/fetchprolist',
-                data: {"pageNum" : page,
-				"regionS" : $("#regionS").val(),
-				"checkInS" : $("#checkIn").val(),
-				"checkOutS" : $("#checkOut").val(),
-				"capS" : $("#capS").val(),
-				"keyword" : $("#keyword").val()},
-				method: "POST", 
-                dataType: 'html',
-                success: function(html) {
-                    $('#fetchMore').append(html);
-                }
-            });
-			page++;
-			sleep(200);
-        }
-        
-    });
-    
-	if(pCount <= page){
-		return false;
-	}
-
-});
-
-/*지연*/
-function sleep(ms) {
-	const wakeUpTime = Date.now() + ms;
-	while (Date.now() < wakeUpTime) {}
-}
-	

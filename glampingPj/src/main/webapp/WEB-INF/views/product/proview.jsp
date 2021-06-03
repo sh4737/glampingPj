@@ -32,7 +32,7 @@
 			<p>${product.pro_addr}</p>
 		</div>
 		<div class="row">
-			<div id="info" class="col-sm-8 col-md-9" style="float:left">
+			<div id="info" class="col-sm-8 col-md-9">
 				<div id="cont_sec">
 					<div>
 						<div id="carouselExampleIndicators" class="carousel slide"
@@ -51,11 +51,11 @@
 							</div>
 							<div class="carousel-inner">
 								<div class="carousel-item active">
-									<img src="${product.pro_pic }" class="d-block w-25" alt="...">
+									<img src="${pageContext.request.contextPath }/upload/${product.pro_pic }" class="d-block w-25" alt="...">
 								</div>
 								<c:forEach var="pp" items="${pplist}">
 									<div class="carousel-item">
-										<img src="${pp.pp_name}" class="d-block w-25" alt="...">
+										<img src="${pageContext.request.contextPath }/upload/${pp.pp_name}" class="d-block w-25" alt="...">
 									</div>
 								</c:forEach>
 							</div>
@@ -72,11 +72,11 @@
 						</div>
 					</div>
 					<div>
-						<h5>상세정보</h5>
+						<h5 class="bold">상세정보</h5>
 						<p>${intro}</p>
 					</div>
 					<div>
-						<h5>주요 편의 시설</h5>
+						<h5 class="bold">주요 편의 시설</h5>
 						<ul>
 							<c:forEach var="con" items="${con}">
 								<li>${con}</li>
@@ -84,15 +84,15 @@
 						</ul>
 					</div>
 					<div>
-						<h5>객실 정보</h5>
+						<h5 class="bold">객실 정보</h5>
 						<div id="roomlist"></div>
 					</div>
 					<div>
-						<h5>후기</h5>
+						<h5 class="bold">후기</h5>
 						<div id="review"></div>
 					</div>
-					<div>
-						<h5>위치</h5>
+					<div id="loc">
+						<h5 class="bold">위치</h5>
 						<p>주소 : ${product.pro_addr}</p>
 						<div id="map" style="width: 500px; height: 400px;"></div>
 						<script>
@@ -101,45 +101,45 @@
 								center: new kakao.maps.LatLng(${product.pro_x}, ${product.pro_y}),
 								level: 3
 							};
-					
+						
 							var map = new kakao.maps.Map(container, options);
 							
 							var markerPosition  = new kakao.maps.LatLng(${product.pro_x}, ${product.pro_y}); 
-
+						
 							// 마커 생성
 							var marker = new kakao.maps.Marker({
 							    position: markerPosition
 							});
-
+						
 							// 마커 지도 위에 표시
 							marker.setMap(map);
 						</script>
 					</div>
-					<div>
-						<h5>사업장 정보</h5>
-						<p>상호명: ${product.pro_name}</p>
-						<p>대표자: ${product.pro_ceo}</p>
-						<p>사업자 등록번호: ${product.pro_n1}-${product.pro_n2}</p>
-						<p>사업장 주소: ${product.pro_addr}</p>
+					<div id="cmp_info">
+						<h5 class="bold">사업장 정보</h5>
+						<p>상호명: ${product.pro_name} / 대표자: ${product.pro_ceo}</p>
+						<p>사업자 등록번호: ${product.pro_n1}-${product.pro_n2} / 사업장 주소: ${product.pro_addr}</p>
+
 					</div>
 				</div>
 			</div>
 
-			<div id="reserv" class="col-sm-4 col-md-3" style="float:right">
+			<div id="reserv" class="col-sm-4 col-md-3 ">
 				<div id="rev_sec">
 					<h5>예약 가격 정보</h5>
 					<form>
-						<table>
-							<tr>
-								<td>체크인 <input type="text" id="checkIn" name="checkInS"
-									value="${checkInS}" readonly="readonly">
-								</td>
-								<td>체크아웃 <input type="text" id="checkOut" name="checkOutS"
-									value="${checkOutS}" readonly="readonly">
-								</td>
-							</tr>
-							<tr>
-								<td colspan="2">인원 <select name="capS" id="capS">
+						<div class="row">
+							<div class="col-sm-6 col-md-6">체크인</div>
+							<div class="col-sm-6 col-md-6">체크아웃</div>
+						</div>
+						<div class="row">
+							<input class="col-sm-6 col-md-6 input-sm" type="text" id="checkIn" name="checkInS"
+										value="${checkInS}" readonly="readonly">
+							<input class="col-sm-6 col-md-6 input-sm" type="text" id="checkOut" name="checkOutS"
+										value="${checkOutS}" readonly="readonly">
+						</div>
+						<div>
+							인원 <select name="capS" id="capS">
 										<option value="0"
 											<c:if test="${cap=='0'}">selected="selected" </c:if>>인원</option>
 										<option value="1"
@@ -162,16 +162,17 @@
 											<c:if test="${cap=='9'}">selected="selected" </c:if>>9</option>
 										<option value="10"
 											<c:if test="${cap=='10'}">selected="selected" </c:if>>10</option>
-								</select>
-								</td>
-							</tr>
-						</table>
-						<div id="rm_price">
-							<span id="sel_name"></span><br>
-							<span id="sel_count"></span><span id="sel_price"></span>							
+							</select>
 						</div>
+						<div id="rm_price" class="row">
+							<span id="sel_name" class="col-sm-12 col-md-12 bold"></span><br>				
+						</div>
+						<div class="row">
+							<span class="col-sm-4 col-md-4" id="sel_count"></span><span class="col-sm-8 col-md-8" id="sel_price"></span>					
+						</div>
+						<hr>
 						<input type="hidden" id="tname" name="res_tname">
-						<input type="submit" id="rev_button" value="예약하기">
+						<input type="submit" class="btn btn-primary col-sm-12 col-md-12" value="예약하기">
 					</form>
 				</div>
 			</div>

@@ -5,25 +5,32 @@
 	
 }
 
-
 #info {
 	padding : 20px 5px;
-	
+	background-color : #f7f3f2;
 }
 
 #reserv {
 	padding : 20px 10px;
 }
 
+#cmp_info p {
+	font-size: 12px;
+}
+
+#loc {
+	font-size: 14px;
+}
+
 #cont_sec {
 	padding : 5px;
-	background-color : white;
+	background-color : #f7f3f2;
 	border-radius : 2px;
 }
 
 #cont_sec > div {
 	margin : 10px 0;
-	padding : 5px, 0;
+	padding : 10px 0;
 	border-bottom : 1px solid #b5b5b5;
 }
 
@@ -31,21 +38,42 @@
 	padding : 5px 0 20px 0;
 }
 
+
 #rev_sec {
-	padding : 5px;
+	padding : 15px;
 	background-color : white;
 	border-radius : 2px;
 }
 
-#rev_button {
-	color: white; 
-	padding: 5px;
-	background-color : #7f4e46;
-	border-radius : 5px;
-	
+#rev_sec div {
+	padding : 2.5px 0;
 }
 
-#rev_button:hover {
-	color: #7f4e46; 
-	background-color : white;
+.rm_row {
+	margin : 10px;	
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.btn-primary {
+    background-color: #7f4e46;
+    border-color: #7f4e46;
+    color: #FFF; 
+
+}
+.btn-primary:hover,
+.btn-primary:focus {
+    border-color: #6f453e;
+    background-color: #6f453e;
+    color: #FFF;
+}
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:active:focus,
+.btn-primary:active:hover {
+    border-color: #5f2218;
+    background-color: #5f2218;
+    color: #FFF;
 }

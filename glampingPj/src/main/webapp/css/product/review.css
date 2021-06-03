@@ -4,3 +4,37 @@
 	display: none;
 }
 
+#str_div > p {
+	color: #b50000;
+	font-weight: bold;
+}
+
+#str_div span {
+	color: gray; 
+	font-size: 14px;
+}
+
+.bold {
+	font-weight: bold;
+}
+
+.date_size {
+	font-size: 14px;
+}
+
+.btn-primary {
+    background-color: #7f4e46;
+    border-color: #7f4e46;
+    color: #FFF; }
+.btn-primary:hover,
+.btn-primary:focus {
+    border-color: #6f453e;
+    background-color: #6f453e;
+    color: #FFF; }
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:active:focus,
+.btn-primary:active:hover {
+    border-color: #5f2218;
+    background-color: #5f2218;
+    color: #FFF; }
