@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+ 
+<mapper namespace="rooms">
+ 
+	<!-- 상품등록신청 -->
+	<insert id="rminsertdo" parameterType="room">
+	insert into room(rm_no,pro_no,rm_type,rm_tname,rm_pno,rm_rno,rm_price,rm_pic,rm_s) 
+	values(room_seq1.nextval, #{pro_no}, #{rm_type}, #{rm_tname}, #{rm_pno}, #{rm_rno}, #{rm_price}, #{rm_pic}, 0)
+	</insert>
+ 	
+	<!-- 등록시점 rm_no 구하기 -->
+ 	<select id="rmload" parameterType="int" resultType="room">
+ 	select * from room where rm_no = (select max(rm_no) from room where pro_no = #{pro_no})
+ 	</select>
+ 	
+ 	<!-- 리스트 구하기 -->
+ 	<select id="getrmlist" parameterType="int" resultType="room">
+ 	select * from room where pro_no = #{pro_no} order by rm_no asc
+ 	</select>
+ 	
+ 	 <!-- 사업장 내 젤 싼방값 구하기 -->
+ 	<select id="getlowpri" parameterType="int" resultType="room">
+ 	select * from room where rm_no = (select max(rm_no) from (select * from room where pro_no = #{pro_no}) where rm_price = (select min(rm_price) from room where pro_no = #{pro_no}))
+ 	</select>
+ 	
+	
+ 	
+</mapper>

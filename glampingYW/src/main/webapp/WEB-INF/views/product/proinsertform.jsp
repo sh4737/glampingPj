@@ -18,6 +18,12 @@
     }
 </script>
 
+<script type="text/javascript" src="//dapi.kakao.com/v2/maps/sdk.js?appkey=05274b64af0d95b6ced6532db8a1d75c&libraries=services"></script>
+
+
+
+
+
 
 <!-- 외부스크립트 불러오기 -->	
 <script src="./js/productinsert.js"></script>
@@ -29,6 +35,7 @@
 
 	<form method="post" action="<%=request.getContextPath() %>/proinsert" enctype="multipart/form-data">
 	<input type="hidden" name="sel_id" value="${sel_id }">
+
 	<table class="yw_table">
 	<br>
 	<tbody>
@@ -44,13 +51,18 @@
 		</tr>
 		<tr>
 			<td>사업장 주소:</td>
-			<td><input id="pro_post" name="pro_post" size="10" readonly><input type="button" value="우편검색" onclick="execDaumPostcode()"></td>
+			<td><input id="pro_post" name="pro_post" size="10" readonly><input type="button" id="spost" class="bt-deco" value="우편검색" onclick="execDaumPostcode()"></td>
 		</tr>
 		<tr>
 			<td></td>
-			<td><input id="pro_addr" name="pro_addr" size="50"></td>
+			<td><input id="pro_addr" name="pro_addr" size="50" readonly></td>
 		</tr>
-		
+					
+		<tr>
+			<td>좌표:</td>
+			<td><input id="pro_x" name="pro_x" size="20" readonly>-<input id="pro_y" name="pro_y" size="20" readonly><input type="button" id="myad" class="bt-deco" value="좌표입력"/></td>
+		</tr>	
+						
 		<tr>
 			<td>사업자 번호:</td>
 			<td><input id="pro_n1" name="pro_n1" size="10">-<input id="pro_n2" name="pro_n2" size="10"></td>
@@ -81,12 +93,12 @@
 	
 	    <tr>
      		<td>업체 대표사진</td>
-     		<td><input type="file" id="pro_pic1" name="pro_pic1" /></td>
+     		<td><input type="file" id="pro_pic1" name="pro_pic1"/></td>
    		</tr>
    		
 		<tr>
 			<td>업체사진</td>
-			<td><input type="button" value="사진추가" id="add_pp_name"/></td>
+			<td><input type="button" value="사진추가" id="add_pp_name" class="bt-deco"/></td>
 		</tr>
 
         <tr id="tr_pp_name"></tr>
@@ -101,71 +113,14 @@
  			<td colspan="2"><hr></td>
  		</tr>
  		
-		</tbody>
-		
-		
-		<tbody>
-		<tr>
-   			<td><h4>객실정보</h4></td>
-   			<td><input type="hidden" name="rm_type" value="3"></td>
- 		</tr>
- 		
-		<tr>
-			<td>객실명:</td>
-			<td><input id="rm_tname" name="rm_tname" size="50"></td>
-		</tr>
-		
-		<tr>
-			<td>인원수(객실당):</td>
-			<td><input id="rm_pno" name="rm_pno" size="2">명</td>
-		</tr>
-		
-   		<tr>
-			<td>객실수:</td>
-			<td><input id="rm_rno" name="rm_rno" size="2">개</td>
-		</tr>
-		
-   		<tr>
-			<td>가격(1박):</td>
-			<td><input id="rm_price" name="rm_price" size="10">원</td>
-		</tr>
-		
-	    <tr>
-     		<td>객실대표사진</td>
-     		<td><input type="file" id="rm_pic1" name="rm_pic1" /></td>
-   		</tr>
-   		
-   		<tr>
-			<td>객실사진</td>
-			<td><input type="button" value="사진추가" id="add_rp_name"/></td>
-		</tr>
-   		
-   		<tr id="tr_rp_name"></tr>
-
-		 <tr>
- 			<td colspan="2" align=center><input type="button" value="객실항목추가" id="add_room"/></td>
- 		</tr>
-   		
- 		<tr>
- 			<td colspan="2"><hr></td>
- 		</tr>
- 		
- 		</tbody>
- 		
- 		<tbody id="tbody_add_room"></tbody>
-
-		
-		
-
-		
-		
-		<tbody>
 		<tr>
 			<td colspan=2 align=center>
-				<input type=submit value="상품등록신청"><input type=reset value="취소">
+				<input type=submit value="상품등록신청" class="bt-deco"><input type=reset value="취소" class="bt-deco">
 			</td>	
 		</tr>
+		
 		</tbody>
+				
 			
 		</table>	
 		

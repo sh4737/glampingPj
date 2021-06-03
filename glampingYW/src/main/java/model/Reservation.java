@@ -15,6 +15,9 @@ public class Reservation {
 	private int res_pno;
 	private int res_price;
 	private String res_tname;
+	private String res_email;
+	private String res_need;
+	private int totalprice;
 	
 	public int getRes_no() {
 		return res_no;
@@ -88,7 +91,27 @@ public class Reservation {
 	public void setRes_tname(String res_tname) {
 		this.res_tname = res_tname;
 	}
+	public String getRes_email() {
+		return res_email;
+	}
+	public void setRes_email(String res_email) {
+		this.res_email = res_email;
+	}
+	public String getRes_need() {
+		return res_need;
+	}
+	public void setRes_need(String res_need) {
+		this.res_need = res_need;
+	}
+	public int getTotalprice() {
+		return totalprice;
+	}
+	public void setTotalprice(int totalprice) {
+		this.totalprice = totalprice;
+	}
 	
+
+
 	
 
 }

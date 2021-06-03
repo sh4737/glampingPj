@@ -11,14 +11,15 @@ public class Product {
 	private String pro_addr;
 	private String pro_n1;
 	private String pro_n2;
-	private int pro_x;
-	private int pro_y;
+	private double pro_x;
+	private double pro_y;
 	private String pro_con;
 	private String pro_pic;
 	private String pro_intro;
 	private Timestamp pro_app;
 	private Timestamp pro_joind;
 	private int pro_s;
+	
 	
 	public int getPro_no() {
 		return pro_no;
@@ -68,16 +69,16 @@ public class Product {
 	public void setPro_n2(String pro_n2) {
 		this.pro_n2 = pro_n2;
 	}
-	public int getPro_x() {
+	public double getPro_x() {
 		return pro_x;
 	}
-	public void setPro_x(int pro_x) {
+	public void setPro_x(double pro_x) {
 		this.pro_x = pro_x;
 	}
-	public int getPro_y() {
+	public double getPro_y() {
 		return pro_y;
 	}
-	public void setPro_y(int pro_y) {
+	public void setPro_y(double pro_y) {
 		this.pro_y = pro_y;
 	}
 	public String getPro_con() {
@@ -118,5 +119,6 @@ public class Product {
 	}
 	
 	
+
 	
 }

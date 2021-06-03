@@ -5,14 +5,14 @@
 
 <c:if test="${result == 1 }">
 	<script>
-		alert("업체대표 사진파일은 10MB까지 업로드 가능합니다.");
+		alert("사진파일은 10MB까지 업로드 가능합니다.");
 		history.go(-1);
 	</script>
 </c:if>
 
 <c:if test="${result == 2 }">
 	<script>
-		alert("업체대표 사진 첨부파일은 jpg, jpeg, gif, png파일만 업로드 가능합니다.");
+		alert("사진첨부파일은 jpg, jpeg, gif, png파일만 업로드 가능합니다.");
 		history.go(-1);
 	</script>
 </c:if>
@@ -27,6 +27,20 @@
 <c:if test="${pp_result == 2 }">
 	<script>
 		alert("업체사진 첨부파일은 jpg, jpeg, gif, png파일만 업로드 가능합니다.");
+		history.go(-1);
+	</script>
+</c:if>
+
+<c:if test="${rp_result == 1 }">
+	<script>
+		alert("객실사진파일은 10MB까지 업로드 가능합니다.");
+		history.go(-1);
+	</script>
+</c:if>
+
+<c:if test="${rp_result == 2 }">
+	<script>
+		alert("객실사진 첨부파일은 jpg, jpeg, gif, png파일만 업로드 가능합니다.");
 		history.go(-1);
 	</script>
 </c:if>

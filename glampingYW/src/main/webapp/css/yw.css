@@ -1,5 +1,8 @@
 @charset "UTF-8";
 
+
+/* 상품 및 객실 입력페이지 */
+
 .yw_under{
 	
 
@@ -14,4 +17,75 @@
 td{
 	width:120px;
 }
+
+.bt-deco{
+	color: white;
+	background: #7F4E46;
+	border-radius: 10px;
+}
+
+.bt-deco1{
+	color: white;
+	background: red;
+	border-radius: 10px;
+}
+
+
+
+/* 판매자 목록 뷰페이지 */
+
+
+
+hr{
+	color: #7F4E46;
+}
+
+.yw_listdiv{
+	margin-left: 40px;
+
+}
+
+#prolist_ra{
+	border-radius: 30px;
+	border: 0px;
+}
+
+#proname{
+	font-weight: bold;
+}
+
+
+#rmsize{
+	font-size: 3px;
+	float: left;
+}
+
+#resize{
+	font-size: 3px;
+	float: left;
+	position: absolute;
+}
+#revsize{
+	font-size: 3px;
+	float: left;
+	
+}
+#frisize{
+	font-weight : bold;
+	float: right;
+}
+
+
+/* 판매자 상품product 상세페이지 */
+
+#de_left{
+	float: left;
+}
+
+#de_abs{
+	position: absolute;
+}
+
+
+
 
