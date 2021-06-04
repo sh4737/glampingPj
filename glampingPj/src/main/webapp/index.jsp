@@ -10,7 +10,7 @@
 </section>
 
 <script>
-	location.href="prolist";
+	location.href="main";
 </script>
 
 <!-- footer 파일 불러오기 -->

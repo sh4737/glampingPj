@@ -29,7 +29,7 @@
 	<header class="col-8 container-fluid main">
 		<div class="top">
 			<div>
-				<a href="${pageContext.request.contextPath }/main">logo</a>
+				<a href="${pageContext.request.contextPath }/main"><img src="${pageContext.request.contextPath }/images/gllogo.png"></a>
 			</div>
 			<div class="dropdown">
 			
