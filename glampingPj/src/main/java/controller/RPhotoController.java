@@ -21,6 +21,7 @@ public class RPhotoController {
 		List<RPhoto> imglist = rps.list(rm_no);
 		
 		model.addAttribute("imglist", imglist);
+		System.out.println(imglist);
 		
 		return "product/loadimglist";
 	}

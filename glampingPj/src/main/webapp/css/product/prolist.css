@@ -61,3 +61,12 @@
 	margin : 20px 0;
 	padding : 20px 0;
 }
+
+.a_best{
+	color: white;
+}
+
+.a_best:hover{
+	color: gray;
+}
+

@@ -13,39 +13,32 @@
 <body>
 
 <div>
-	<div id="carouselExampleIndicators" class="carousel slide"
+	<div id="carousel_rmp" class="carousel slide"
 		data-bs-ride="carousel">
 		<div class="carousel-indicators">
-			<button type="button"
-				data-bs-target="#carouselExampleIndicators"
-				data-bs-slide-to="0" class="active" aria-current="true"
-				aria-label="Slide 1"></button>
 			<c:set var="size" value="${fn:length(imglist)}"/>
-			<c:forEach var="i" begin="1" end="${size}">
+			<c:forEach var="i" begin="0" end="${size-1}">
 				<button type="button"
-					data-bs-target="#carouselExampleIndicators"
+					data-bs-target="#carousel_rmp" <c:if test="${i == 0}">class="active" aria-current="true"</c:if>
 					data-bs-slide-to="${i}" aria-label="Slide ${i+1}"></button>
 			</c:forEach>	
 		</div>
 		<div class="carousel-inner">
-			<div class="carousel-item active">
-				<img src="${pageContext.request.contextPath }/upload/${rm.rm_pic}" class="d-block w-25" alt="...">
-			</div>
 			<c:if test="${size > 1}">
 				<c:forEach var="img" items="${imglist}">
-					<div class="carousel-item">
-						<img src="${pageContext.request.contextPath }/upload/${img.rp_name}" class="d-block w-25" alt="...">
+					<div class="carousel-item <c:if test="${img.rp_name == imglist[0].rp_name}">active</c:if>">
+						<img src="${pageContext.request.contextPath }/upload/${img.rp_name}" class="d-block w-100" alt="...">
 					</div>
 				</c:forEach>
 			</c:if>
 		</div>
 		<button class="carousel-control-prev" type="button"
-			data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+			data-bs-target="#carousel_rmp" data-bs-slide="prev">
 			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 			<span class="visually-hidden">Previous</span>
 		</button>
 		<button class="carousel-control-next" type="button"
-			data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+			data-bs-target="#carousel_rmp" data-bs-slide="next">
 			<span class="carousel-control-next-icon" aria-hidden="true"></span>
 			<span class="visually-hidden">Next</span>
 		</button>

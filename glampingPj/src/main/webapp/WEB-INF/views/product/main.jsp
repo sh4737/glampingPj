@@ -117,8 +117,8 @@
 				<div class="carousel-item">
 					<img src="${pageContext.request.contextPath }/upload/${best.pro_pic }" class="d-block w-100" alt="...">
 					<div class="carousel-caption d-none d-md-block">
-						<h5><a href="${pageContext.request.contextPath }/proView/pro_no/${best.pro_no}">${best.pro_name }</a></h5>
-						<p><a href="${pageContext.request.contextPath }/proView/pro_no/${best.pro_no}">${best.pro_addr }</a></p>
+						<h5><a class="a_best" href="${pageContext.request.contextPath }/proView/pro_no/${best.pro_no}">${best.pro_name }</a></h5>
+						<p><a class="a_best" href="${pageContext.request.contextPath }/proView/pro_no/${best.pro_no}">${best.pro_addr }</a></p>
 					</div>
 				</div>
 			</c:forEach>

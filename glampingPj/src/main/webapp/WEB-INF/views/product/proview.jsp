@@ -35,37 +35,37 @@
 			<div id="info" class="col-sm-8 col-md-9">
 				<div id="cont_sec">
 					<div>
-						<div id="carouselExampleIndicators" class="carousel slide"
+						<div id="carousel_pro" class="carousel slide"
 							data-bs-ride="carousel">
 							<div class="carousel-indicators">
 								<button type="button"
-									data-bs-target="#carouselExampleIndicators"
+									data-bs-target="#carousel_pro"
 									data-bs-slide-to="0" class="active" aria-current="true"
 									aria-label="Slide 1"></button>
 								<c:set var="size" value="${fn:length(pplist)}"/>
 								<c:forEach var="i" begin="1" end="${size}">
 									<button type="button"
-										data-bs-target="#carouselExampleIndicators"
+										data-bs-target="#carousel_pro"
 										data-bs-slide-to="${i}" aria-label="Slide ${i+1}"></button>
 								</c:forEach>	
 							</div>
 							<div class="carousel-inner">
 								<div class="carousel-item active">
-									<img src="${pageContext.request.contextPath }/upload/${product.pro_pic }" class="d-block w-25" alt="...">
+									<img src="${pageContext.request.contextPath }/upload/${product.pro_pic }" class="d-block w-100" alt="...">
 								</div>
 								<c:forEach var="pp" items="${pplist}">
 									<div class="carousel-item">
-										<img src="${pageContext.request.contextPath }/upload/${pp.pp_name}" class="d-block w-25" alt="...">
+										<img src="${pageContext.request.contextPath }/upload/${pp.pp_name}" class="d-block w-100" alt="...">
 									</div>
 								</c:forEach>
 							</div>
 							<button class="carousel-control-prev" type="button"
-								data-bs-target="#carouselExampleIndicators" data-bs-slide="prev">
+								data-bs-target="#carousel_pro" data-bs-slide="prev">
 								<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 								<span class="visually-hidden">Previous</span>
 							</button>
 							<button class="carousel-control-next" type="button"
-								data-bs-target="#carouselExampleIndicators" data-bs-slide="next">
+								data-bs-target="#carousel_pro" data-bs-slide="next">
 								<span class="carousel-control-next-icon" aria-hidden="true"></span>
 								<span class="visually-hidden">Next</span>
 							</button>
