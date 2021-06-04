@@ -9,6 +9,10 @@
 	<div>1</div>
 </section>
 
+<script>
+	location.href="prolist";
+</script>
+
 <!-- footer 파일 불러오기 -->
 <%@ include file="WEB-INF/views/footer.jsp" %>
 
